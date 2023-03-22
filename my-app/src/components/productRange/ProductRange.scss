@@ -1,5 +1,14 @@
 .ProductRange{
+    text-align: center;
     img{
         width: 300px;
+    }
+    button{
+        margin-top: 20px;
+        border: none;
+        background-color: #FE5F1E;
+        color: #fff;
+        padding: 5px 10px;
+        border-radius: 4px;
     }
 }
