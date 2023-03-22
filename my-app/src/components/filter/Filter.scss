@@ -1,13 +1,13 @@
 @import "../../mixins";
 @import "../../variables";
 
-.ProductRange{
-    text-align: center;
-    img{
-        width: 300px;
-    }
+.Filter{
     button{
-        @include btn($color_1, #fff);
-        margin-top: 20px;
+        @include btn($color_2, #000000);
+        margin-right: 5px;
     }
+    .active{
+        @include btn($color_1, #fff);
+    }
+
 }

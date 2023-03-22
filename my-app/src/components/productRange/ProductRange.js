@@ -10,7 +10,7 @@ const ProductRange = () => {
         .then(response => response.json())
         .then(json => setState(json))
     }, [])
-    return <div className="ProductRange">
+    return <main className="ProductRange">
         <Container>
             <Row>
                 {state.map((item) => <Col key={item.id} xs={12} md={6} lg={4} xxl={3}>
@@ -20,7 +20,7 @@ const ProductRange = () => {
             </Row>
         </Container>
         <button>LOAD MORE</button>
-    </div>
+    </main>
 }
 
 export default ProductRange
