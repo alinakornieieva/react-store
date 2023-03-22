@@ -13,13 +13,17 @@ const ProductRange = () => {
     return <main className="ProductRange">
         <Container>
             <Row>
-                {state.map((item) => <Col key={item.id} xs={12} md={6} lg={4} xxl={3}>
+                {state.map((item) => <Col className="col" key={item.id} xs={12} md={6} lg={4} xxl={3}>
                     <img src={item.images[0]} alt={item.title} />
                     <div>{item.title}</div>
+                    <div className="price_btn">
+                        <div>{item.price}$</div>
+                        <button>+ Add</button>
+                    </div>
                     </Col>)}
             </Row>
         </Container>
-        <button>LOAD MORE</button>
+        <button className="load_btn">LOAD MORE</button>
     </main>
 }
 

@@ -3,11 +3,30 @@
 
 .ProductRange{
     text-align: center;
+    .col{
+        margin-top: 40px;
+    }
     img{
         width: 300px;
+        box-shadow: $box_shadow_1;
     }
-    button{
+    .load_btn{
         @include btn($color_1, #fff);
         margin-top: 20px;
+    }
+    .price_btn{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-left: 2px;
+        padding-right: 2px;
+        button{
+            border: none;
+            background-color: $color_2;
+            padding: 2px 15px;
+            border-radius: 10px;
+            font-size: 12px;
+            box-shadow: $box_shadow_1;
+        }
     }
 }
