@@ -1,14 +1,15 @@
 import { useEffect } from "react"
 import { Container, Col, Row } from "react-bootstrap"
 import { useDispatch, useSelector } from "react-redux"
-import { changeOffset, fetchProducts } from "../../reducers/productsReducer"
+import { fetchProducts } from "../../reducers/productsReducer"
 import Spiner from "../spiner/Spiner"
 import './ProductRange.scss'
 import { createSelector } from 'reselect'
 import Skeleton from "../skeleton/Skeleton"
+import { addItem, addPrice, addProduct } from "../../reducers/basketReducer"
 
 const ProductRange = () => {
-    const {loadingStatus, offset} = useSelector((state) => state.productRange)
+    const {loadingStatus} = useSelector((state) => state.productRange)
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(fetchProducts())
@@ -24,10 +25,14 @@ const ProductRange = () => {
             }
         }
     )
+    const onAddButtonClick = (item) => {
+        dispatch(addItem(item))
+        dispatch(addPrice(item.price))
+        dispatch(addProduct())
+    }
     const filteredProducts = useSelector(filteredProductsSelector)
-    console.log(filteredProducts)
     const loading = loadingStatus === 'fetching' ? <Spiner/> : null
-    const content = loadingStatus === 'idle' && filteredProducts.length > 0 ? <View products={filteredProducts}/> : null
+    const content = loadingStatus === 'idle' && filteredProducts.length > 0 ? <View onAddButtonClick={onAddButtonClick} products={filteredProducts}/> : null
     const skeleton =  loadingStatus === 'idle' && filteredProducts.length === 0 ? <Skeleton/> : null
     return <main>
         {loading}
@@ -36,7 +41,7 @@ const ProductRange = () => {
     </main>
 }
 
-const View = ({products}) => {
+const View = ({products, onAddButtonClick}) => {
     return <div className="ProductRange">
         <Container>
             <Row>
@@ -47,7 +52,7 @@ const View = ({products}) => {
                     <div>{item.title}</div>
                     <div className="price_btn">
                         <div>{item.price}$</div>
-                        <button>+ Add</button>
+                        <button onClick={() => onAddButtonClick(item)}>+ Add</button>
                     </div>
                 </Col>)}
             </Row>

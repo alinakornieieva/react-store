@@ -1,0 +1,24 @@
+@import '../../variables';
+
+.Basket{
+    font-size: 18px;
+    display: flex;
+    background-color: $color_1;
+    color: #fff;
+    padding: 3px 30px;
+    border-radius: 15px;
+    justify-content: space-between;
+    .total-price{
+        margin-right: 20px;
+        span{
+            margin-right: 2px;
+        }
+    }
+    .basket-item{
+        display: flex;
+        align-items: center;
+        svg{
+            margin-right: 2px;
+        }
+    }
+}
