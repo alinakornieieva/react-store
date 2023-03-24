@@ -6,7 +6,7 @@ const initialState = {
 
 export const fetchFilters = () => (dispatch) => {
     dispatch(filtersFetching())
-    fetch('https://api.escuelajs.co/api/v1/categories')
+    fetch('https://fakestoreapi.com/products/categories')
         .then((data) => data.json())
         .then((json) => dispatch(filtersFetched(json)))
         .catch(() => dispatch(filtersFetchingError()))

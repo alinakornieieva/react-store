@@ -7,23 +7,31 @@
         margin-top: 40px;
     }
     img{
-        width: 280px;
+        max-width: 280px;
+        max-height: 400px;
         box-shadow: $box_shadow_1;
+    }
+    .img-div{
+        height: 400px;
     }
     @media screen and (max-width: 991px){
         img{
-            width: 300px;
+            max-width: 300px;
+            max-height: 420px;
+        }
+        .img-div{
+            height: 420px;
         }
     } 
     @media screen and (max-width: 400px){
         img{
-            width: 260px;
+            max-width: 260px;
+            max-height: 390px;
+        }
+        .img-div{
+            height: 390px;
         }
     } 
-    .load_btn{
-        @include btn($color_1, #fff);
-        margin-top: 20px;
-    }
     .price_btn{
         display: flex;
         align-items: center;

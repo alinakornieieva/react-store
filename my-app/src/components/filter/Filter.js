@@ -18,9 +18,9 @@ const Filter = () => {
 const View = ({filters, currentFilter}) => {
     const dispatch = useDispatch()
     return <>
-        <button className={currentFilter === 'all' ? "active" : null} onClick={() => dispatch(activeFilterChanged('all'))}>All</button>
-        {filters.map((item) => <button className={currentFilter === item.name ? "active" : null}
-         onClick={() => dispatch(activeFilterChanged(item.name))} key={item.id}>{item.name}</button>)}
+        <button className={currentFilter === 'all' ? "active" : null} onClick={() => dispatch(activeFilterChanged('all'))}>all</button>
+        {filters.map((item) => <button className={currentFilter === item ? "active" : null}
+         onClick={() => dispatch(activeFilterChanged(item))} key={item}>{item}</button>)}
     </>
 }
 

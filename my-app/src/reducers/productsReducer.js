@@ -1,11 +1,11 @@
 const initialState = {
     loadingStatus: 'idle',
-    products: []
+    products: [],
 }
 
 export const fetchProducts = () => (dispatch) => {
     dispatch(productsFetching())
-    fetch('https://api.escuelajs.co/api/v1/products?offset=0&limit=12')
+    fetch(`https://fakestoreapi.com/products`)
         .then(response => response.json())
         .then(json => dispatch(productsFetched(json)))
         .catch(() => dispatch(productsFetchingError()))
@@ -21,6 +21,10 @@ export const productsFetched = (payload) => {
 
 export const productsFetchingError = () => {
     return {type: 'PRODUCTS_FETCHING_ERROR'}
+}
+
+export const changeOffset = (payload) => {
+    return {type: 'CHANGE_OFFSET', payload}
 }
 
 const ProductRangeReducer = (state = initialState, action) => {
@@ -40,6 +44,11 @@ const ProductRangeReducer = (state = initialState, action) => {
         return {
             ...state,
             loadingStatus: 'error'
+        }
+        case 'CHANGE_OFFSET': 
+        return {
+            ...state,
+            offset: action.payload
         }
         default: return state
     }
