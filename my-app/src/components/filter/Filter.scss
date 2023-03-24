@@ -5,9 +5,15 @@
     button{
         @include btn($color_2, #000000);
         margin-right: 5px;
+        margin-bottom: 3px
     }
     .active{
         @include btn($color_1, #fff);
+    }
+    @media screen and (max-width: 357px){ 
+        button{
+            font-size: 12px;
+        }
     }
 
 }

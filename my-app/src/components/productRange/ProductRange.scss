@@ -3,16 +3,17 @@
 
 .ProductRange{
     text-align: center;
+    margin: 40px 0 0;
     .col{
-        margin-top: 40px;
+        margin-bottom: 40px;
     }
     img{
         max-width: 280px;
         max-height: 400px;
-        box-shadow: $box_shadow_1;
     }
     .img-div{
         height: 400px;
+        margin-bottom: 5px;
     }
     @media screen and (max-width: 991px){
         img{
@@ -23,21 +24,29 @@
             height: 420px;
         }
     } 
-    @media screen and (max-width: 400px){
+    @media screen and (max-width: 767px){
         img{
-            max-width: 260px;
-            max-height: 390px;
+            width: 260px;
+            max-height: fit-content;
         }
         .img-div{
-            height: 390px;
+            height: fit-content;
+        }
+    } 
+    @media screen and (max-width: 370px){
+        img{
+            width: 200px;
+            max-height: fit-content;
+        }
+        .img-div{
+            height: fit-content;
         }
     } 
     .price_btn{
+        margin-top: 5px;
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        padding-left: 2px;
-        padding-right: 2px;
+        justify-content: space-evenly;
         button{
             border: none;
             background-color: $color_2;

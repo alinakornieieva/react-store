@@ -12,12 +12,7 @@ const ProductRange = () => {
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(fetchProducts())
-        // console.log(products)
     }, [])
-    const onLoadMoreClick = () => {
-        dispatch(changeOffset(offset + 12))
-        dispatch(fetchProducts(offset))
-    }
     const filteredProductsSelector = createSelector(
         (state) => state.productRange.products,
         (state) => state.filter.currentFilter,
@@ -32,7 +27,7 @@ const ProductRange = () => {
     const filteredProducts = useSelector(filteredProductsSelector)
     console.log(filteredProducts)
     const loading = loadingStatus === 'fetching' ? <Spiner/> : null
-    const content = loadingStatus === 'idle' && filteredProducts.length > 0 ? <View onLoadMoreClick={onLoadMoreClick} products={filteredProducts}/> : null
+    const content = loadingStatus === 'idle' && filteredProducts.length > 0 ? <View products={filteredProducts}/> : null
     const skeleton =  loadingStatus === 'idle' && filteredProducts.length === 0 ? <Skeleton/> : null
     return <main>
         {loading}
@@ -41,7 +36,7 @@ const ProductRange = () => {
     </main>
 }
 
-const View = ({products, onLoadMoreClick}) => {
+const View = ({products}) => {
     return <div className="ProductRange">
         <Container>
             <Row>
@@ -54,7 +49,7 @@ const View = ({products, onLoadMoreClick}) => {
                         <div>{item.price}$</div>
                         <button>+ Add</button>
                     </div>
-                    </Col>)}
+                </Col>)}
             </Row>
         </Container>
     </div>
