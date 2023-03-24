@@ -4,19 +4,33 @@ import { useDispatch, useSelector } from "react-redux"
 import { fetchProducts } from "../../reducers/productsReducer"
 import Spiner from "../spiner/Spiner"
 import './ProductRange.scss'
+import { createSelector } from 'reselect'
 
 const ProductRange = () => {
-    const {products, loadingStatus} = useSelector((state) => state.productRange)
+    const {loadingStatus} = useSelector((state) => state.productRange)
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(fetchProducts())
+        // console.log(products)
     }, [])
+    const filteredProductsSelector = createSelector(
+        (state) => state.productRange.products,
+        (state) => state.filter.currentFilter,
+        (products, currentFilter) => {
+            if (currentFilter === 'all') {
+                return products
+            } else {
+                return products.filter((item) => item.category.name === currentFilter)
+            }
+        }
+    )
+    const filteredProducts = useSelector(filteredProductsSelector)
+    console.log(filteredProducts)
     const loading = loadingStatus === 'fetching' ? <Spiner/> : null
-    const content = loadingStatus === 'idle' ? <View products={products}/> : null
+    const content = loadingStatus === 'idle' ? <View products={filteredProducts}/> : null
     return <main className="ProductRange">
         {loading}
         {content}
-        
     </main>
 }
 

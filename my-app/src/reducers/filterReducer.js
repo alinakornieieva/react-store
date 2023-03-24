@@ -1,6 +1,7 @@
 const initialState = {
     loadingStatus: 'idle',
-    filters: []
+    filters: [],
+    currentFilter: 'all'
 }
 
 export const fetchFilters = () => (dispatch) => {
@@ -23,6 +24,10 @@ export const filtersFetchingError = () => {
     return {type: 'FILTERS_FETCHING_ERROR'}
 }
 
+export const activeFilterChanged = (payload) => {
+    return {type: 'ACTIVE_FILTER_CHANGED', payload}
+}
+
 const FilterReducer = (state = initialState, action) => {
     switch(action.type) {
         case 'FILTERS_FETCHING': 
@@ -37,10 +42,14 @@ const FilterReducer = (state = initialState, action) => {
                 loadingStatus: 'idle'
             }
         case 'FILTERS_FETCHING_ERROR': 
-        return {
-            ...state,
-            loadingStatus: 'error'
-        }
+            return {
+                ...state,
+                loadingStatus: 'error'
+            }
+        case 'ACTIVE_FILTER_CHANGED': 
+            return {...state,
+            currentFilter: action.payload
+            }
         default: return state
     }
 }

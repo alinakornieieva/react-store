@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { fetchFilters } from "../../reducers/filterReducer"
+import { activeFilterChanged, fetchFilters } from "../../reducers/filterReducer"
 import './Filter.scss'
 
 const Filter = () => {
@@ -16,9 +16,10 @@ const Filter = () => {
 }
 
 const View = ({filters}) => {
+    const dispatch = useDispatch()
     return <>
-        <button className="active">All</button>
-        {filters.map((item) => <button key={item.id}>{item.name}</button>)}
+        <button className="active" onClick={() => dispatch(activeFilterChanged('all'))}>All</button>
+        {filters.map((item) => <button onClick={() => dispatch(activeFilterChanged(item.name))} key={item.id}>{item.name}</button>)}
     </>
 }
 
