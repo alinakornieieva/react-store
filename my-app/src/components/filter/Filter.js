@@ -1,17 +1,13 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { filtersFetched, filtersFetching, filtersFetchingError } from "../../reducers/filterReducer"
+import { fetchFilters } from "../../reducers/filterReducer"
 import './Filter.scss'
 
 const Filter = () => {
     const dispatch = useDispatch()
     const {loadingStatus, filters} = useSelector((state) => state.filter)
     useEffect(() => {
-        dispatch(filtersFetching())
-        fetch('https://api.escuelajs.co/api/v1/categories')
-        .then((data) => data.json())
-        .then((json) => dispatch(filtersFetched(json)))
-        .catch(() => dispatch(filtersFetchingError()))
+        dispatch(fetchFilters())
     }, [])
     const content = loadingStatus === 'idle' ? <View filters={filters}/> : null
     return <nav className="Filter">

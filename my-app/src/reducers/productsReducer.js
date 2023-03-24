@@ -3,6 +3,14 @@ const initialState = {
     products: []
 }
 
+export const fetchProducts = () => (dispatch) => {
+    dispatch(productsFetching())
+    fetch('https://api.escuelajs.co/api/v1/products?offset=0&limit=12')
+        .then(response => response.json())
+        .then(json => dispatch(productsFetched(json)))
+        .catch(() => dispatch(productsFetchingError()))
+}
+
 export const productsFetching = () => {
     return {type: 'PRODUCTS_FETCHING'}
 }

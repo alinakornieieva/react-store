@@ -3,6 +3,14 @@ const initialState = {
     filters: []
 }
 
+export const fetchFilters = () => (dispatch) => {
+    dispatch(filtersFetching())
+    fetch('https://api.escuelajs.co/api/v1/categories')
+        .then((data) => data.json())
+        .then((json) => dispatch(filtersFetched(json)))
+        .catch(() => dispatch(filtersFetchingError()))
+}
+
 export const filtersFetching = () => {
     return {type: 'FILTERS_FETCHING'}
 }
