@@ -7,9 +7,19 @@
         margin-top: 40px;
     }
     img{
-        width: 300px;
+        width: 280px;
         box-shadow: $box_shadow_1;
     }
+    @media screen and (max-width: 991px){
+        img{
+            width: 300px;
+        }
+    } 
+    @media screen and (max-width: 400px){
+        img{
+            width: 260px;
+        }
+    } 
     .load_btn{
         @include btn($color_1, #fff);
         margin-top: 20px;
