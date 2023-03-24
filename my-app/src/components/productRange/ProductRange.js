@@ -5,6 +5,7 @@ import { fetchProducts } from "../../reducers/productsReducer"
 import Spiner from "../spiner/Spiner"
 import './ProductRange.scss'
 import { createSelector } from 'reselect'
+import Skeleton from "../skeleton/Skeleton"
 
 const ProductRange = () => {
     const {loadingStatus} = useSelector((state) => state.productRange)
@@ -27,15 +28,17 @@ const ProductRange = () => {
     const filteredProducts = useSelector(filteredProductsSelector)
     console.log(filteredProducts)
     const loading = loadingStatus === 'fetching' ? <Spiner/> : null
-    const content = loadingStatus === 'idle' ? <View products={filteredProducts}/> : null
-    return <main className="ProductRange">
+    const content = loadingStatus === 'idle' && filteredProducts.length > 0 ? <View products={filteredProducts}/> : null
+    const skeleton =  loadingStatus === 'idle' && filteredProducts.length === 0 ? <Skeleton/> : null
+    return <main>
         {loading}
         {content}
+        {skeleton}
     </main>
 }
 
 const View = ({products}) => {
-    return <>
+    return <div className="ProductRange">
         <Container>
             <Row>
                 {products.map((item) => <Col className="col" key={item.id} xs={12} md={6} lg={4} xxl={3}>
@@ -49,7 +52,7 @@ const View = ({products}) => {
             </Row>
         </Container>
         <button className="load_btn">LOAD MORE</button>
-    </>
+    </div>
 }
 
 export default ProductRange
