@@ -5,21 +5,22 @@ import './Filter.scss'
 
 const Filter = () => {
     const dispatch = useDispatch()
-    const {loadingStatus, filters} = useSelector((state) => state.filter)
+    const {loadingStatus, filters, currentFilter} = useSelector((state) => state.filter)
     useEffect(() => {
         dispatch(fetchFilters())
     }, [])
-    const content = loadingStatus === 'idle' ? <View filters={filters}/> : null
+    const content = loadingStatus === 'idle' ? <View filters={filters} currentFilter={currentFilter}/> : null
     return <nav className="Filter">
        {content}
     </nav>
 }
 
-const View = ({filters}) => {
+const View = ({filters, currentFilter}) => {
     const dispatch = useDispatch()
     return <>
-        <button className="active" onClick={() => dispatch(activeFilterChanged('all'))}>All</button>
-        {filters.map((item) => <button onClick={() => dispatch(activeFilterChanged(item.name))} key={item.id}>{item.name}</button>)}
+        <button className={currentFilter === 'all' ? "active" : null} onClick={() => dispatch(activeFilterChanged('all'))}>All</button>
+        {filters.map((item) => <button className={currentFilter === item.name ? "active" : null}
+         onClick={() => dispatch(activeFilterChanged(item.name))} key={item.id}>{item.name}</button>)}
     </>
 }
 
