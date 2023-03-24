@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { Container, Col, Row } from "react-bootstrap"
+import Spiner from "../spiner/Spiner"
 import './ProductRange.scss'
 
 const ProductRange = () => {
@@ -13,6 +14,7 @@ const ProductRange = () => {
     return <main className="ProductRange">
         <Container>
             <Row>
+                {/* <Spiner/> */}
                 {state.map((item) => <Col className="col" key={item.id} xs={12} md={6} lg={4} xxl={3}>
                     <img src={item.images[0]} alt={item.title} />
                     <div>{item.title}</div>
