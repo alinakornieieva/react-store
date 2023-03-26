@@ -26,9 +26,9 @@ const ProductRange = () => {
         }
     )
     const onAddButtonClick = (item) => {
-        dispatch(addItem(item))
+        dispatch(addItem())
         dispatch(addPrice(item.price))
-        dispatch(addProduct())
+        dispatch(addProduct(item))
     }
     const filteredProducts = useSelector(filteredProductsSelector)
     const loading = loadingStatus === 'fetching' ? <Spiner/> : null

@@ -1,0 +1,60 @@
+@import "../../mixins";
+@import "../../variables";
+
+
+.SelectedItemsPage{
+    text-align: center;
+    margin: 40px 0 0;
+    .col{
+        margin-bottom: 40px;
+    }
+    img{
+        max-width: 280px;
+        max-height: 400px;
+    }
+    .img-div{
+        height: 400px;
+        margin-bottom: 5px;
+    }
+    @media screen and (max-width: 991px){
+        img{
+            max-width: 300px;
+            max-height: 420px;
+        }
+        .img-div{
+            height: 420px;
+        }
+    } 
+    @media screen and (max-width: 767px){
+        img{
+            width: 260px;
+            max-height: fit-content;
+        }
+        .img-div{
+            height: fit-content;
+        }
+    } 
+    @media screen and (max-width: 370px){
+        img{
+            width: 200px;
+            max-height: fit-content;
+        }
+        .img-div{
+            height: fit-content;
+        }
+    } 
+    .price_btn{
+        margin-top: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        button{
+            border: none;
+            background-color: $color_2;
+            padding: 2px 20px;
+            border-radius: 10px;
+            font-size: 12px;
+            box-shadow: $box_shadow_1;
+        }
+    }
+}
