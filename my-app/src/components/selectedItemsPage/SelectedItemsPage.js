@@ -5,10 +5,11 @@ import './SelectedItemsPage.scss'
 const SelectedItemsPage = () => {
     const {products} = useSelector((state) => state.basket)
     const dispatch = useDispatch()
-    const onProductDeleteClick = (item) => {
-        dispatch(deleteProduct(item.id))
-        dispatch(removePrice(item.price))
-    }
+    //delete specific one, add ability to change amount of products
+    // const onProductDeleteClick = (item) => {
+    //     dispatch(deleteProduct(item.id))
+    //     dispatch(removePrice(item.price))
+    // }
     return <main className="SelectedItemsPage">
         {products.length > 0 ? <div className="delete-all" onClick={() => dispatch(deleteAll())}>
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-trash3" viewBox="0 0 16 16">
@@ -32,22 +33,5 @@ const SelectedItemsPage = () => {
         }
     </main>
 }
-// return <main className="SelectedItemsPage">
-// <Container>
-//     <Row>
-//         {products.length === 0 ? <h5>No selected items...</h5> : products.map((item) => <Col className="col" key={item.id} xs={12} md={6} lg={4} xxl={3}>
-//             <div className="img-div">
-//                 <img src={item.image} alt={item.title} />
-//             </div>
-//             <div>{item.title}</div>
-//             <div>{item.amount}</div>
-//             <div className="price_btn">
-//                 <div>{item.price}$</div>
-//                 <button onClick={() => onProductDeleteClick(item)}>Remove</button>
-//             </div>
-//         </Col>)}
-//     </Row>
-// </Container>
-// </main>
 
 export default SelectedItemsPage
