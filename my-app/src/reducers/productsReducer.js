@@ -37,7 +37,7 @@ const ProductRangeReducer = (state = initialState, action) => {
         case 'PRODUCTS_FETCHED': 
             return {
                 ...state,
-                products: action.payload,
+                products: action.payload.map((item) => ({...item, amount: 0})),
                 loadingStatus: 'idle'
             }
         case 'PRODUCTS_FETCHING_ERROR': 

@@ -29,7 +29,14 @@ const BasketReducer = (state = initialState, action) => {
         case 'ADD_PRODUCT':
             return {
                 ...state,
-                products: [...state.products, {...action.payload, amount: 1}]
+                products: state.products.find((item) => item.id === action.payload.id) ?
+                    state.products.map((item) => {
+                        if (item.id === action.payload.id) {
+                            return {...item, amount: item.amount + 1}
+                        }
+                        return item
+                    })
+                : [...state.products, {...action.payload, amount: 1}]
             }
         case 'DELETE_PRODUCT':
             return {

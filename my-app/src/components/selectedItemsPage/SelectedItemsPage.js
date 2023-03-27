@@ -5,7 +5,6 @@ import './SelectedItemsPage.scss'
 
 const SelectedItemsPage = () => {
     const {products} = useSelector((state) => state.basket)
-    console.log(products)
     const dispatch = useDispatch()
     const onProductDeleteClick = (item) => {
         dispatch(deleteProduct(item.id))
@@ -19,6 +18,7 @@ const SelectedItemsPage = () => {
                         <img src={item.image} alt={item.title} />
                     </div>
                     <div>{item.title}</div>
+                    <div>{item.amount}</div>
                     <div className="price_btn">
                         <div>{item.price}$</div>
                         <button onClick={() => onProductDeleteClick(item)}>Remove</button>
