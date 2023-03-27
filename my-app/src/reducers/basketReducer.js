@@ -20,6 +20,10 @@ export const deleteProduct = (payload) => {
     return {type: 'DELETE_PRODUCT', payload}
 }
 
+export const removePrice = (payload) => {
+    return {type: 'REMOVE_PRICE', payload}
+}
+
 const BasketReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'ADD_PRICE':
@@ -40,7 +44,13 @@ const BasketReducer = (state = initialState, action) => {
         case 'DELETE_PRODUCT':
             return {
                 ...state,
+                totalItems: state.totalItems - 1,
                 products: state.products.filter((item) => item.id !== action.payload)
+            }
+        case 'REMOVE_PRICE': 
+            return {
+                ...state,
+                totalPrice: state.totalPrice - action.payload
             }
         default: return state 
     }

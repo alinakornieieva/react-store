@@ -1,11 +1,15 @@
 import { Container, Col, Row } from "react-bootstrap"
 import { useDispatch, useSelector } from "react-redux"
-import { deleteProduct } from "../../reducers/basketReducer"
+import { deleteProduct, removePrice } from "../../reducers/basketReducer"
 import './SelectedItemsPage.scss'
 
 const SelectedItemsPage = () => {
     const {products} = useSelector((state) => state.basket)
     const dispatch = useDispatch()
+    const onProductDeleteClick = (item) => {
+        dispatch(deleteProduct(item.id))
+        dispatch(removePrice(item.price))
+    }
     return <main className="SelectedItemsPage">
         <Container>
             <Row>
@@ -16,7 +20,7 @@ const SelectedItemsPage = () => {
                     <div>{item.title}</div>
                     <div className="price_btn">
                         <div>{item.price}$</div>
-                        <button onClick={() => dispatch(deleteProduct(item.id))}>Remove</button>
+                        <button onClick={() => onProductDeleteClick(item)}>Remove</button>
                     </div>
                 </Col>)}
             </Row>
