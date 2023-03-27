@@ -1,4 +1,3 @@
-import { Container, Col, Row } from "react-bootstrap"
 import { useDispatch, useSelector } from "react-redux"
 import { deleteProduct, removePrice } from "../../reducers/basketReducer"
 import './SelectedItemsPage.scss'
@@ -11,22 +10,39 @@ const SelectedItemsPage = () => {
         dispatch(removePrice(item.price))
     }
     return <main className="SelectedItemsPage">
-        <Container>
-            <Row>
-                {products.length === 0 ? <h5>No selected items...</h5> : products.map((item) => <Col className="col" key={item.id} xs={12} md={6} lg={4} xxl={3}>
-                    <div className="img-div">
-                        <img src={item.image} alt={item.title} />
-                    </div>
+        {products.length === 0 ? <h5>No selected items...</h5> : products.map((item) => <div className="flex-div" key={item.id}>
+                <img src={item.image} alt={item.title} />
+                <div className="title-desc">
                     <div>{item.title}</div>
-                    <div>{item.amount}</div>
-                    <div className="price_btn">
-                        <div>{item.price}$</div>
-                        <button onClick={() => onProductDeleteClick(item)}>Remove</button>
-                    </div>
-                </Col>)}
-            </Row>
-        </Container>
+                    <div className="desc">{item.description}</div>
+                </div>
+                <div className="btn-section">
+                    <button>+</button>
+                    <span>{item.amount}</span>
+                    <button>-</button>
+                </div>
+                <div className="price">{item.price}$</div>
+            </div>
+            )
+        }
     </main>
 }
+// return <main className="SelectedItemsPage">
+// <Container>
+//     <Row>
+//         {products.length === 0 ? <h5>No selected items...</h5> : products.map((item) => <Col className="col" key={item.id} xs={12} md={6} lg={4} xxl={3}>
+//             <div className="img-div">
+//                 <img src={item.image} alt={item.title} />
+//             </div>
+//             <div>{item.title}</div>
+//             <div>{item.amount}</div>
+//             <div className="price_btn">
+//                 <div>{item.price}$</div>
+//                 <button onClick={() => onProductDeleteClick(item)}>Remove</button>
+//             </div>
+//         </Col>)}
+//     </Row>
+// </Container>
+// </main>
 
 export default SelectedItemsPage

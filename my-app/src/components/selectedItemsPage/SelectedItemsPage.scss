@@ -3,58 +3,79 @@
 
 
 .SelectedItemsPage{
-    text-align: center;
-    margin: 40px 0 0;
-    .col{
-        margin-bottom: 40px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    h5{
+        text-align: center;
     }
-    img{
-        max-width: 280px;
-        max-height: 400px;
-    }
-    .img-div{
-        height: 400px;
-        margin-bottom: 5px;
-    }
-    @media screen and (max-width: 991px){
+    .flex-div{
+        display: grid;
+        margin-bottom: 20px;
+        grid-template-columns: 180px auto 100px 50px;
         img{
-            max-width: 300px;
-            max-height: 420px;
+            width: 150px;
         }
-        .img-div{
-            height: 420px;
+        @media screen and (max-width: 500px) {
+            img{
+                width: 100px;
+                max-height: 150px;
+            }
         }
-    } 
-    @media screen and (max-width: 767px){
-        img{
-            width: 260px;
-            max-height: fit-content;
+        @media (max-width: 800px) {
+            justify-content: space-around;
+            grid-template: "b b a a" 
+                        "b b c d"
+                        "b b c d";
+            img{
+                grid-area: b;
+            }
+            .title-desc{
+                grid-area: a;
+            }
+            .btn-section{
+                grid-area: c;
+            }
+            .price{
+                grid-area: d;
+            }
         }
-        .img-div{
-            height: fit-content;
+        @media (max-width: 650px){
+            .title-desc{
+                max-width: 200px;
+            }
         }
-    } 
-    @media screen and (max-width: 370px){
-        img{
-            width: 200px;
-            max-height: fit-content;
+        @media (max-width: 395px) {
+            grid-template: "b b " 
+                        "b b "
+                        "a a "
+                        "c d";
+            justify-content: center;
+            justify-items: center;
+            .title-desc{
+                text-align: center;
+                margin: 8px 0;
+            }
         }
-        .img-div{
-            height: fit-content;
+        .title-desc{
+            width: 400px;
+            .desc{
+                font-size: 14px;
+                opacity: 0.7;
+            }
         }
-    } 
-    .price_btn{
-        margin-top: 5px;
-        display: flex;
-        align-items: center;
-        justify-content: space-evenly;
-        button{
-            border: none;
-            background-color: $color_2;
-            padding: 2px 20px;
-            border-radius: 10px;
-            font-size: 12px;
-            box-shadow: $box_shadow_1;
+        .btn-section{
+            span{
+                margin: 0 8px;
+            }
+            button{
+                line-height: 1rem; 
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                border-color: $color_1;
+                background-color: #fff;
+            }
         }
     }
+
 }
