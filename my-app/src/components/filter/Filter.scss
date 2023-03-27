@@ -2,6 +2,7 @@
 @import "../../variables";
 
 .Filter{
+    margin-top: 20px;
     button{
         @include btn($color_2, #000000);
         margin-right: 5px;
