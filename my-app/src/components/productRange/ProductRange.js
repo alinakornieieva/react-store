@@ -6,7 +6,7 @@ import Spiner from "../spiner/Spiner"
 import './ProductRange.scss'
 import { createSelector } from 'reselect'
 import Skeleton from "../skeleton/Skeleton"
-import { addItem, addPrice, addProduct } from "../../reducers/basketReducer"
+import { addPrice, addProduct } from "../../reducers/basketReducer"
 
 const ProductRange = () => {
     const {loadingStatus} = useSelector((state) => state.productRange)
@@ -26,7 +26,6 @@ const ProductRange = () => {
         }
     )
     const onAddButtonClick = (item) => {
-        dispatch(addItem())
         dispatch(addPrice(item.price))
         dispatch(addProduct(item))
     }

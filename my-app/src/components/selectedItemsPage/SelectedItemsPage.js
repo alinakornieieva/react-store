@@ -5,6 +5,7 @@ import './SelectedItemsPage.scss'
 
 const SelectedItemsPage = () => {
     const {products} = useSelector((state) => state.basket)
+    console.log(products)
     const dispatch = useDispatch()
     const onProductDeleteClick = (item) => {
         dispatch(deleteProduct(item.id))
