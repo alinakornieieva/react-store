@@ -3,9 +3,16 @@
 
 .ProductRange{
     text-align: center;
-    margin: 40px 0 0;
+    margin: 60px 0 0;
     .col{
-        margin-bottom: 40px;
+        margin-bottom: 60px;
+    }
+    .border{
+        display: inline-block;
+        background-color: #fff;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
     }
     img{
         max-width: 280px;

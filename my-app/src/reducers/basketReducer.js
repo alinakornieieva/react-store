@@ -1,6 +1,7 @@
 const initialState = {
     totalPrice: 0,
-    products: []
+    products: [],
+    totalItemsCount: 0
 }
 
 export const addPrice = (payload) => {
@@ -29,6 +30,7 @@ const BasketReducer = (state = initialState, action) => {
         case 'ADD_PRODUCT':
             return {
                 ...state,
+                totalItemsCount: state.totalItemsCount + 1,
                 products: state.products.find((item) => item.id === action.payload.id) ?
                     state.products.map((item) => {
                         if (item.id === action.payload.id) {
@@ -41,6 +43,7 @@ const BasketReducer = (state = initialState, action) => {
         case 'DELETE_PRODUCT':
             return {
                 ...state,
+                totalItemsCount: state.totalItemsCount - 1,
                 products: state.products.filter((item) => item.id !== action.payload)
             }
         case 'REMOVE_PRICE': 

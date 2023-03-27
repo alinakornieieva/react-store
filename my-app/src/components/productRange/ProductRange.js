@@ -31,7 +31,7 @@ const ProductRange = () => {
     }
     const filteredProducts = useSelector(filteredProductsSelector)
     const loading = loadingStatus === 'fetching' ? <Spiner/> : null
-    const content = loadingStatus === 'idle' && filteredProducts.length > 0 ? <View onAddButtonClick={onAddButtonClick} products={filteredProducts}/> : null
+    const content = loadingStatus === 'idle' && filteredProducts.length > 0 ? <View onAddButtonClick={onAddButtonClick} filteredProducts={filteredProducts}/> : null
     const skeleton =  loadingStatus === 'idle' && filteredProducts.length === 0 ? <Skeleton/> : null
     return <main>
         {loading}
@@ -40,18 +40,19 @@ const ProductRange = () => {
     </main>
 }
 
-const View = ({products, onAddButtonClick}) => {
+const View = ({filteredProducts, onAddButtonClick}) => {
+    const {products} = useSelector((state) => state.basket)
     return <div className="ProductRange">
         <Container>
             <Row>
-                {products.map((item) => <Col className="col" key={item.id} xs={12} md={6} lg={4} xxl={3}>
+                {filteredProducts.map((item) => <Col className="col" key={item.id} xs={12} md={6} lg={4} xxl={3}>
                     <div className="img-div">
                         <img src={item.image} alt={item.title} />
                     </div>
                     <div>{item.title}</div>
                     <div className="price_btn">
                         <div>{item.price}$</div>
-                        <button onClick={() => onAddButtonClick(item)}>+ Add</button>
+                        <button onClick={() => onAddButtonClick(item)}>+ Add <span className="border">{products.find((product) => product.id === item.id) ? products.find((product) => product.id === item.id).amount : 0}</span></button>
                     </div>
                 </Col>)}
             </Row>

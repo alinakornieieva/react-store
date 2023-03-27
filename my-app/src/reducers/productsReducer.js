@@ -23,10 +23,6 @@ export const productsFetchingError = () => {
     return {type: 'PRODUCTS_FETCHING_ERROR'}
 }
 
-export const changeOffset = (payload) => {
-    return {type: 'CHANGE_OFFSET', payload}
-}
-
 const ProductRangeReducer = (state = initialState, action) => {
     switch(action.type) {
         case 'PRODUCTS_FETCHING': 
@@ -44,11 +40,6 @@ const ProductRangeReducer = (state = initialState, action) => {
         return {
             ...state,
             loadingStatus: 'error'
-        }
-        case 'CHANGE_OFFSET': 
-        return {
-            ...state,
-            offset: action.payload
         }
         default: return state
     }
