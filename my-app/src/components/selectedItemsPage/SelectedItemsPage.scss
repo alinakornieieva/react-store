@@ -8,6 +8,16 @@
     h5{
         text-align: center;
     }
+    .delete-all{
+        display: flex;
+        cursor: pointer;
+        align-items: center;
+        margin: 10px 0;
+        justify-content: flex-end;
+        svg{
+            padding-right: 3px;
+        }
+    }
     .flex-div{
         display: grid;
         margin-bottom: 20px;
