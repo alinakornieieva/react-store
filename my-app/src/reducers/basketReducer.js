@@ -24,6 +24,14 @@ export const deleteAll = () => {
     return {type: 'DELETE_ALL'}
 }
 
+export const increaseAmount = (payload) => {
+    return {type: 'INCREASE_AMOUNT', payload}
+}
+
+export const decreaseAmount = (payload) => {
+    return {type: 'DECREASE_AMOUNT', payload}
+}
+
 const BasketReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'ADD_PRICE':
@@ -53,7 +61,7 @@ const BasketReducer = (state = initialState, action) => {
         case 'REMOVE_PRICE': 
             return {
                 ...state,
-                totalPrice: state.totalPrice - action.payload
+                totalPrice: state.totalPrice !== 0 ? state.totalPrice - action.payload : 0
             }
         case 'DELETE_ALL': 
             return {
@@ -61,6 +69,32 @@ const BasketReducer = (state = initialState, action) => {
                 totalPrice: 0,
                 products: [],
                 totalItemsCount: 0
+            }
+        case 'INCREASE_AMOUNT': 
+            return {
+                ...state,
+                totalItemsCount: state.totalItemsCount + 1,
+                products: state.products.find((item) => item.id === action.payload.id) ?
+                    state.products.map((item) => {
+                        if (item.id === action.payload.id) {
+                            return {...item, amount: item.amount + 1}
+                        }
+                        return item
+                    })
+                : null
+            }
+        case 'DECREASE_AMOUNT': 
+            return {
+                ...state,
+                totalItemsCount: state.totalItemsCount > 0 ? state.totalItemsCount - 1 : 0,
+                products: state.products.find((item) => item.id === action.payload.id) && action.payload.amount !== 1 ?
+                    state.products.map((item) => {
+                        if (item.id === action.payload.id) {
+                            return {...item, amount: item.amount - 1}
+                        }
+                        return item
+                    })
+                : state.products.filter((item) => item.id !== action.payload.id)
             }
         default: return state 
     }
