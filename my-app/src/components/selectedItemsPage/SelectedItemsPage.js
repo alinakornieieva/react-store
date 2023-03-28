@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
-import { addPrice, addProduct, decreaseAmount, deleteAll, deleteProduct, increaseAmount, removePrice } from "../../reducers/basketReducer"
+import { addPrice, decreaseAmount, deleteAll, deleteProduct, increaseAmount, removePrice } from "../../reducers/basketReducer"
 import './SelectedItemsPage.scss'
 
 const SelectedItemsPage = () => {

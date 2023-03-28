@@ -5,7 +5,6 @@ import { fetchProducts } from "../../reducers/productsReducer"
 import Spiner from "../spiner/Spiner"
 import './ProductRange.scss'
 import { createSelector } from 'reselect'
-import Skeleton from "../skeleton/Skeleton"
 import { addPrice, addProduct } from "../../reducers/basketReducer"
 
 const ProductRange = () => {
@@ -32,11 +31,9 @@ const ProductRange = () => {
     const filteredProducts = useSelector(filteredProductsSelector)
     const loading = loadingStatus === 'fetching' ? <Spiner/> : null
     const content = loadingStatus === 'idle' && filteredProducts.length > 0 ? <View onAddButtonClick={onAddButtonClick} filteredProducts={filteredProducts}/> : null
-    const skeleton =  loadingStatus === 'idle' && filteredProducts.length === 0 ? <Skeleton/> : null
     return <main>
         {loading}
         {content}
-        {skeleton}
     </main>
 }
 
