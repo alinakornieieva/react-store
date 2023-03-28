@@ -31,8 +31,10 @@ const ProductRange = () => {
     const filteredProducts = useSelector(filteredProductsSelector)
     const loading = loadingStatus === 'fetching' ? <Spiner/> : null
     const content = loadingStatus === 'idle' && filteredProducts.length > 0 ? <View onAddButtonClick={onAddButtonClick} filteredProducts={filteredProducts}/> : null
+    const errorMessage = loadingStatus === 'error' ? <h5>Something went wrong...</h5> : null
     return <main>
         {loading}
+        {errorMessage}
         {content}
     </main>
 }

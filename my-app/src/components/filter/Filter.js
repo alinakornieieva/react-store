@@ -10,8 +10,10 @@ const Filter = () => {
         dispatch(fetchFilters())
     }, [])
     const content = loadingStatus === 'idle' ? <View filters={filters} currentFilter={currentFilter}/> : null
+    const errorMessage = loadingStatus === 'error' ? <h5>Something went wrong...</h5> : null
     return <nav className="Filter">
        {content}
+       {errorMessage}
     </nav>
 }
 
