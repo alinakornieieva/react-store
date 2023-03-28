@@ -10,6 +10,7 @@
     }
     .delete-all{
         display: flex;
+        margin-right: 10px;
         cursor: pointer;
         align-items: center;
         margin: 10px 0;
@@ -21,7 +22,7 @@
     .flex-div{
         display: grid;
         margin-bottom: 20px;
-        grid-template-columns: 180px auto 100px 50px;
+        grid-template-columns: 30px 180px auto 100px 50px;
         img{
             width: 150px;
         }
@@ -31,11 +32,11 @@
                 max-height: 150px;
             }
         }
-        @media (max-width: 800px) {
+        @media (max-width: 850px) {
             justify-content: space-around;
-            grid-template: "b b a a" 
-                        "b b c d"
-                        "b b c d";
+            grid-template: "b b a a ." 
+                        "b b c d ."
+                        "b b c d m";
             img{
                 grid-area: b;
             }
@@ -48,17 +49,20 @@
             .price{
                 grid-area: d;
             }
-        }
-        @media (max-width: 650px){
-            .title-desc{
-                max-width: 200px;
+            svg{
+                grid-area: m;
             }
         }
-        @media (max-width: 395px) {
-            grid-template: "b b " 
-                        "b b "
-                        "a a "
-                        "c d";
+        @media (max-width: 660px){
+            .title-desc{
+                max-width: 300px;
+            }
+        }
+        @media (max-width: 590px) {
+            grid-template: "b b b" 
+                        "b b b"
+                        "a a a"
+                        "c d m";
             justify-content: center;
             justify-items: center;
             .title-desc{
