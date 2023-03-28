@@ -55,13 +55,13 @@ const BasketReducer = (state = initialState, action) => {
         case 'DELETE_PRODUCT':
             return {
                 ...state,
-                totalItemsCount: state.totalItemsCount - 1,
-                products: state.products.filter((item) => item.id !== action.payload)
+                totalItemsCount: state.totalItemsCount - action.payload.amount,
+                products: state.products.filter((item) => item.id !== action.payload.id)
             }
         case 'REMOVE_PRICE': 
             return {
                 ...state,
-                totalPrice: state.totalPrice !== 0 ? state.totalPrice - action.payload : 0
+                totalPrice: state.totalPrice >= action.payload ? state.totalPrice - action.payload : 0
             }
         case 'DELETE_ALL': 
             return {
